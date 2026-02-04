@@ -14,12 +14,15 @@
 
 ## システム構成 (System Configuration)
 
+![RUDS Robot](images/RUDS.png)
+*Fig 1. 超音波診断ロボットRUDS / Robotic Ultrasound Diagnosis System (RUDS)*
+
 * **ロボット:** RUDS (Robotic Ultrasound Diagnosis System)
 * **ファントム:** 超音波診断ファントム "ABDFAN" (株式会社京都科学製)
 * **座標系:** ロボットベッド部を$z$軸（頭尾方向）に移動させながら、アキシャル面($xy$平面)の超音波画像を取得しています。
 
 ![System Overview](images/system_overview.jpg)
-*Fig 1. RUDSのシステム構成および座標系定義*
+*Fig 2. RUDSのシステム構成および座標系定義*
 
 ## 構築手法 (Methodology)
 
@@ -33,10 +36,10 @@
     * **Path 2:** 2列目を同様に0.5mm間隔でスキャン。
 
 ![Scanning Path](images/scanning_path.jpg)
-*Fig 2. スキャン経路およびオーバーラップの概要*
+*Fig 3. スキャン経路およびオーバーラップの概要*
 
 ![Robot Imaging](images/robot_imaging.jpg)
-*Fig 3. RUDSによる肝臓スキャンの様子 (a) スキャン開始位置 (b) Path 1 (c) Path 2 / Liver scan with RUDS (a) Scan starting point (b) Path 1 (c) Path 2*
+*Fig 4. RUDSによる肝臓スキャンの様子 (a) スキャン開始位置 (b) Path 1 (c) Path 2 / Liver scan with RUDS (a) Scan starting point (b) Path 1 (c) Path 2*
 
 ### 2. 画像結合 (Image Stitching)
 広範囲な肝臓断面を得るため、Path 1とPath 2の画像を結合しています。
@@ -47,10 +50,12 @@
 * **点群生成:** 画像上のピクセル座標($x, y$)とロボットのエンコーダ値($z$)を統合し、3次元点群データを生成。
 * **メッシュ処理:** 点群解析ソフト（MeshLab）を使用し、外れ値除去、ボクセルグリッドフィルタ、Screened Poisson Surface Reconstruction、およびスムージング処理を実施して最終的なメッシュモデルを構築しました。
 
+**注意事項:** ロボットの機械的精度やプローブとファントム表面の接触状態により、サブミリメートルオーダーの位置誤差が含まれる可能性があります。本データセットは、この誤差を考慮した上での利用を想定しています。
+
 以下は構築された3Dモデルの例です。
 
 ![3D Model Result](images/3d_model_result.jpg)
-*Fig 4. 再構築された血管3Dモデル*
+*Fig 5. 再構築された血管3Dモデル*
 
 ## データセットの仕様 (Dataset Specifications)
 
@@ -65,6 +70,14 @@
 * **ピクセルスペーシング:** **41 pixels / 10 mm** (固定)
 * **スライス厚:** 0.5 mm
 
+### 精度に関する注記
+ロボット制御システムにより高精度なスキャンを実現していますが、以下の要因により微小な誤差が含まれます：
+* ロボットアームの機械的な位置決め精度の限界（サブミリメートルオーダー）
+* ファントム表面の凹凸によるプローブ接触位置のばらつき
+* 超音波画像の音速補正に起因する空間分解能の限界
+
+これらの誤差は、臨床応用を想定した研究や評価実験においては許容範囲内と考えられますが、高精度な幾何学的解析を行う際にはご留意ください。
+
 ## データセットの入手方法 (Access)
 
 本データセットは、研究・開発目的での利用に限り提供可能です。
@@ -75,15 +88,23 @@
 
 内容を確認後、Google Driveの共有リンクをご案内いたします。
 
-## 引用について (Citation)
+## 文献 (Citation)
 
-本データセットまたは手法を研究・開発にご利用いただく際は、以下の文献の引用をお願いいたします。
+本手法が掲載された学会誌を以下に示します。
 
+**論文:**
+> 笠置 陸, 小泉憲裕, 西山 悠, 梅津菜央, 藤井 樹, 沼田和司, 松本直樹, 小川眞広, 小路 直, 津村遼介. "3D モデルに基づく磁気センサを必要としない肝腫瘍超音波治療効果判定システムの構築." 日本超音波医学会 第97回学術集会, *超音波医学* 51, Supplement (2024): S736-S736.
+
+**BibTeX:**
 ```bibtex
-@inproceedings{YourName202X,
-  title={Construction of 3D Vascular Models using Robotic Ultrasound...},
-  author={Your Name and Co-authors},
-  booktitle={Proceedings of [Conference Name]},
-  year={202X},
-  pages={xx--xx}
+@article{Kasagi2024,
+  title={3D モデルに基づく磁気センサを必要としない肝腫瘍超音波治療効果判定システムの構築},
+  author={笠置 陸 and 小泉憲裕 and 西山 悠 and 梅津菜央 and 藤井 樹 and 沼田和司 and 松本直樹 and 小川眞広 and 小路 直 and 津村遼介},
+  journal={超音波医学},
+  volume={51},
+  number={Supplement},
+  pages={S736--S736},
+  year={2024},
+  month={4},
+  note={日本超音波医学会 第97回学術集会}
 }
