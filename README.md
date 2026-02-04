@@ -22,7 +22,7 @@
 * **座標系:** ロボットベッド部を$z$軸（頭尾方向）に移動させながら、アキシャル面($xy$平面)の超音波画像を取得しています。
 
 ![System Overview](images/system_overview.jpg)
-*Fig 2. RUDSのシステム構成および座標系定義*
+*Fig 2. 座標系定義*
 
 ## 構築手法 (Methodology)
 
