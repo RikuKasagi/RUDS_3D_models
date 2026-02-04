@@ -125,11 +125,6 @@
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-このライセンスの下では：
-* ✅ **表示:** 適切なクレジットを表示し、ライセンスへのリンクを提供し、変更があれば明示する必要があります。
-* ✅ **非営利:** 営利目的での利用はできません。
-* ✅ **派生物の作成:** データセットを改変、加工することが可能です。
-
 詳細については [CC BY-NC 4.0 ライセンス](https://creativecommons.org/licenses/by-nc/4.0/deed.ja) をご参照ください。
 
 ## 文献 (Citation)
